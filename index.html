@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Agenda una reunión</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    html,body{
+        width:100%;
+        height:100%;
+        background:#1a1a1a;
+        overflow-x:hidden;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .container{
+        width:100%;
+        max-width:1200px;
+        margin:auto;
+        padding:10px;
+    }
+
+    .calendly-inline-widget{
+        width:100%;
+        min-width:320px;
+        height:980px;
+        border:none;
+        border-radius:12px;
+        overflow:hidden;
+    }
+
+    @media (max-width:768px){
+
+        .container{
+            padding:0;
+        }
+
+        .calendly-inline-widget{
+            height:1150px;
+            border-radius:0;
+        }
+
+    }
+
+    @media (min-width:1600px){
+
+        .calendly-inline-widget{
+            height:900px;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div
+class="calendly-inline-widget"
+data-url="https://calendly.com/dokgohyuk1997?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff">
+</div>
+
+</div>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<script>
+window.addEventListener("message", function(e){
+
+    if(
+        e.data &&
+        e.data.event &&
+        e.data.event.indexOf("calendly") === 0 &&
+        e.data.payload &&
+        e.data.payload.height
+    ){
+        document.querySelector(".calendly-inline-widget").style.height =
+            e.data.payload.height + "px";
+    }
+
+});
+</script>
+
+</body>
+</html>
